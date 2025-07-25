@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hello Doc, I've Got a Surprise for You</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Dancing+Script:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Floating Hearts Background -->
+    <div class="floating-hearts"></div>
+    
+    <!-- Custom Cursor Trail -->
+    <div class="cursor-trail"></div>
+    <!-- PIN Entry Screen -->
+    <div id="pin-screen" class="screen active">
+        <div class="pin-container">
+            <h1>Hello Doc Aisha ❤️</h1>
+            <div class="pin-input-container">
+                <input type="password" id="pin-input" placeholder="Enter PIN" maxlength="4">
+                <button id="unlock-btn">Unlock</button>
+            </div>
+            <p class="hint">💡 Hint: Ahmad's birth year</p>
+            <div id="error-message" class="error-message"></div>
+        </div>
+    </div>
+
+    <!-- Welcome Screen -->
+    <div id="welcome-screen" class="screen">
+        <div class="welcome-container">
+            <div id="typing-text" class="typing-text"></div>
+            <button id="continue-btn" class="continue-btn hidden">Show me 😌</button>
+        </div>
+    </div>
+
+    <!-- Quiz Screen -->
+    <div id="quiz-screen" class="screen">
+        <div class="quiz-container">
+            <div class="progress-bar">
+                <div class="progress" id="progress"></div>
+            </div>
+            <div id="question-container">
+                <!-- Questions will be dynamically inserted here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Photo Gallery Screen -->
+    <div id="gallery-screen" class="screen">
+        <div class="gallery-container">
+            <h2 class="gallery-title">Our Beautiful Memories 📸</h2>
+            <div class="photo-slideshow">
+                <div class="photo-slide active">
+                    <img src="images/memory1.jpg" alt="Memory 1">
+                    <p class="photo-caption">First day we met - you stole my heart instantly ❤️</p>
+                </div>
+                <div class="photo-slide">
+                    <img src="images/memory2.jpg" alt="Memory 2">
+                    <p class="photo-caption">Our first coffee date - you were so beautiful ☕</p>
+                </div>
+                <div class="photo-slide">
+                    <img src="images/memory3.jpg" alt="Memory 3">
+                    <p class="photo-caption">When you became my favorite nurse 👩‍⚕️</p>
+                </div>
+                <div class="photo-slide">
+                    <img src="images/memory4.jpg" alt="Memory 4">
+                    <p class="photo-caption">Planning our future with little Sumayyah 👶</p>
+                </div>
+            </div>
+            <div class="photo-controls">
+                <button class="photo-btn" onclick="changePhoto(-1)">❮</button>
+                <div class="photo-dots"></div>
+                <button class="photo-btn" onclick="changePhoto(1)">❯</button>
+            </div>
+            <button id="gallery-continue" class="continue-btn">Continue the Journey ✨</button>
+        </div>
+    </div>
+
+    <!-- Memory Game Screen -->
+    <div id="memory-game-screen" class="screen">
+        <div class="game-container">
+            <h2 class="game-title">Memory Game: Our Special Moments 🧠</h2>
+            <p class="game-subtitle">Match the pairs to unlock the next surprise!</p>
+            
+            <div id="memory-stats">
+                <div id="move-counter">Moves: 0</div>
+                <div id="memory-message">Find matching pairs!</div>
+            </div>
+            
+            <div class="memory-grid" id="memory-grid">
+                <!-- Memory cards will be generated here by JavaScript -->
+            </div>
+            
+            <button id="memory-restart" class="continue-btn" style="margin-top: 20px;">Restart Game</button>
+            <button id="memory-continue" class="continue-btn hidden">Continue to Next Surprise</button>
+        </div>
+    </div>
+
+    <!-- Timeline Screen -->
+    <div id="timeline-screen" class="screen">
+        <div class="timeline-container">
+            <h2 class="timeline-title">Our Love Story Timeline 📅</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-date">Day 1</div>
+                    <div class="timeline-content">
+                        <h3>First Meeting</h3>
+                        <p>The day I met the most beautiful nurse in the world</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">Week 2</div>
+                    <div class="timeline-content">
+                        <h3>First Coffee</h3>
+                        <p>You said yes to coffee and made my heart skip a beat</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">Month 3</div>
+                    <div class="timeline-content">
+                        <h3>Falling Deeper</h3>
+                        <p>Realized you're not just beautiful, but incredibly strong</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">Month 6</div>
+                    <div class="timeline-content">
+                        <h3>Future Dreams</h3>
+                        <p>Started dreaming about our little Sumayyah</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">Today</div>
+                    <div class="timeline-content">
+                        <h3>Forever Love</h3>
+                        <p>Creating this website to show you how much you mean to me</p>
+                    </div>
+                </div>
+            </div>
+            <button id="timeline-continue" class="continue-btn">Continue 💖</button>
+        </div>
+    </div>
+
+    <!-- Scratch Card Screen -->
+    <div id="scratch-screen" class="screen">
+        <div class="scratch-container">
+            <h2 class="scratch-title">Scratch to Reveal Your Surprise! ✨</h2>
+            <div class="scratch-card">
+                <canvas id="scratch-canvas" width="300" height="200"></canvas>
+                <div class="scratch-message">
+                    <h3>You're My Everything!</h3>
+                    <p>Every day with you feels like a blessing</p>
+                    <div class="heart-animation">❤️</div>
+                </div>
+            </div>
+            <p class="scratch-instruction">Use your finger or mouse to scratch!</p>
+            <button id="scratch-continue" class="continue-btn hidden">Amazing! Continue 😍</button>
+        </div>
+    </div>
+
+    <!-- Spin Wheel Screen -->
+    <div id="wheel-screen" class="screen">
+        <div class="wheel-container">
+            <h2 class="wheel-title">Spin for a Special Message! 🎀</h2>
+            <div class="wheel-wrapper">
+                <canvas id="wheel-canvas" width="300" height="300"></canvas>
+                <div class="wheel-pointer"></div>
+            </div>
+            <button id="spin-btn" class="spin-button">Spin the Wheel!</button>
+            <div id="wheel-result" class="wheel-result hidden"></div>
+            <button id="wheel-continue" class="continue-btn hidden">Continue ✨</button>
+        </div>
+    </div>
+
+    <!-- Emotional Reveal Screen -->
+    <div id="reveal-screen" class="screen">
+        <div class="reveal-container">
+            <div class="heart-icon">💖</div>
+            <div class="reveal-text">
+                <p>Truth is… You're the most beautiful blessing I have, Aisha.</p>
+                <p>You're strong, caring, and you never stop giving, even when you're tired.</p>
+                <p>You deserve the world.</p>
+                <p>And inshaAllah, our Sumayyah will have a mama as amazing as you.</p>
+                <p class="final-message">Never forget: You're loved deeply.</p>
+            </div>
+            <button id="final-btn" class="final-btn">Continue ✨</button>
+        </div>
+    </div>
+
+    <!-- Final Screen -->
+    <div id="final-screen" class="screen">
+        <div class="final-container">
+            <div class="glowing-heart">
+                <i class="fas fa-heart"></i>
+            </div>
+            <button id="voice-btn" class="voice-btn">Tap to hear my voice 🫶</button>
+            <div id="voice-player" class="voice-player hidden">
+                <audio controls>
+                    <source src="voice-note.mp3" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
+            </div>
+            <div class="closing-text">
+                <p>Forever yours, Ahmad ❤️</p>
+                <p>Now go save lives, but don't forget to eat 😂</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Background Audio -->
+    <audio id="background-music" loop>
+        <source src="ordinary.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <!-- Success Sound -->
+    <audio id="success-sound">
+        <source src="success.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <!-- Additional Sound Effects -->
+    <audio id="click-sound">
+        <source src="click.mp3" type="audio/mpeg">
+    </audio>
+    
+    <audio id="match-sound">
+        <source src="match.mp3" type="audio/mpeg">
+    </audio>
+    
+    <audio id="wheel-spin-sound">
+        <source src="spin.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Enhanced Canvas Systems -->
+    <canvas id="confetti-canvas"></canvas>
+    <canvas id="particle-canvas"></canvas>
+    
+    <!-- Music Visualizer -->
+    <div class="music-visualizer">
+        <div class="visualizer-bar"></div>
+        <div class="visualizer-bar"></div>
+        <div class="visualizer-bar"></div>
+        <div class="visualizer-bar"></div>
+        <div class="visualizer-bar"></div>
+    </div>
+
+    <!-- Audio Elements -->
+    <audio id="background-music" loop>
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    
+    <audio id="success-sound">
+        <source src="https://www.soundjay.com/buttons/sounds/button-09a.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    
+    <audio id="click-sound">
+        <source src="https://www.soundjay.com/buttons/sounds/button-09.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    
+    <script src="script.js"></script>
+    
+    <!-- Debug Console -->
+    <style>
+        #debug-console {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 150px;
+            background: rgba(0, 0, 0, 0.8);
+            color: #0f0;
+            font-family: monospace;
+            padding: 10px;
+            overflow-y: auto;
+            font-size: 12px;
+            z-index: 9999;
+            display: block; /* Make it visible by default */
+        }
+        #debug-console div {
+            border-bottom: 1px solid #333;
+            padding: 2px 0;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+    </style>
+    <div id="debug-console"></div>
+</body>
+</html>
